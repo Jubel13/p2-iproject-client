@@ -88,11 +88,20 @@ export default {
           this.$router.push({ name: "Result" }).catch(() => {
             console.log("done");
           });
+          this.$store.dispatch("sendCustomEventToServer", {
+            message: "dari client",
+          });
         })
         .catch((err) => {
           console.log(err.response.data);
         });
     },
+  },
+  created() {
+    this.$store.dispatch("sendCustomEventToServer", { message: "dari client" });
+    this.$socket.client.emit("customEventFromClient", {
+      message: "dari client",
+    });
   },
 };
 </script>

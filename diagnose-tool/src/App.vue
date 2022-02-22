@@ -43,11 +43,18 @@
     <router-view />
   </div>
 </template>
-
+<script>
+export default {
+  created() {
+    this.$store.dispatch("sendCustomEventToServer", "Dari client");
+  },
+};
+</script>
 <style>
 #app {
   width: 80%;
   margin: 0 auto;
+  font-size: 1.2rem !important;
 }
 
 .card {
