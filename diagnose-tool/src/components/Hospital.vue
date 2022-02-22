@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div>
     <div id="map">
       <div id="detail">
         <h3>Hospital Detail</h3>
