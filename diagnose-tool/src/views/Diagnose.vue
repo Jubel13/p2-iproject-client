@@ -85,7 +85,9 @@ export default {
         .then((resp) => {
           console.log(resp.data);
           this.$store.commit("setDiagnoseResult", resp.data);
-          this.$router.push({ name: "Result" });
+          this.$router.push({ name: "Result" }).catch(() => {
+            console.log("done");
+          });
         })
         .catch((err) => {
           console.log(err.response.data);

@@ -5,6 +5,7 @@ import Diagnose from "../views/Diagnose.vue";
 import Result from "../views/Result.vue";
 import Location from "../views/Location.vue";
 import Nearby from "../views/NearbyPlace.vue";
+import Map from "../views/Map.vue";
 
 Vue.use(VueRouter);
 
@@ -37,6 +38,11 @@ const routes = [
         component: Nearby,
       },
     ],
+  },
+  {
+    path: "/map",
+    name: "Map",
+    component: Map,
   },
 ];
 

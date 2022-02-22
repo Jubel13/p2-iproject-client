@@ -8,7 +8,9 @@
           <input v-model="location" type="text" class="form-control" />
         </div>
         <div class="mb-3">
-          <label class="form-label">Radius from current location</label>
+          <label class="form-label"
+            >Radius from current location (meters)</label
+          >
           <input v-model="radius" type="number" class="form-control" />
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -35,7 +37,9 @@ export default {
         .then((resp) => {
           console.log(resp.data);
           this.$store.commit("setNearby", resp.data.features);
-          this.$router.push({ name: "Nearby" });
+          this.$router.push({ name: "Nearby" }).catch(() => {
+            console.log("done");
+          });
         })
         .catch((err) => console.log(err.response.data));
     },
