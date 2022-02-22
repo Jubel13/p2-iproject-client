@@ -14,7 +14,7 @@ export default {
   data: function () {
     return {
       message: { author: "Doctor", contents: "" },
-      feed: [],
+      feed: [{ author: "Doctor", contents: "Hello" }],
     };
   },
   computed: {
@@ -24,8 +24,15 @@ export default {
   },
   methods: {
     onNewOwnMessage() {
+      let msg = [];
+      this.feed.forEach((el) => {
+        msg.push({
+          id: 1,
+          ...el,
+        });
+      });
       console.log(this.chats);
-      this.$socket.client.emit("sendMessageToServer", this.feed);
+      this.$socket.client.emit("sendMessageToServer", msg);
     },
   },
   components: {
