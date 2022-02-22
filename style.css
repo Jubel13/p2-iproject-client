@@ -1,0 +1,56 @@
+body {
+  background-color: #fff;
+}
+#app {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.navbar {
+  background-color: #9e9ea7 !important;
+}
+
+#home {
+  display: flex;
+}
+
+#heading {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#heading h1 {
+  font-size: 56px;
+}
+
+#heading p {
+  font-size: 24px;
+}
+
+#heading button {
+  width: 50%;
+}
+
+#image {
+  width: 50%;
+}
+
+#image img {
+  width: 100%;
+}
+
+#diagnose h1 {
+  text-align: center;
+}
+
+.card {
+  padding: 20px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+#result h1 {
+  text-align: center;
+}
