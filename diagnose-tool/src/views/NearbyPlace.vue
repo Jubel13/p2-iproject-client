@@ -13,12 +13,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>RSU Columbia</td>
+          <tr v-for="(near, idx) in nearby" v-bind:key="near.properties.lon">
+            <td>{{ idx + 1 }}</td>
+            <td>{{ near.properties.name }}</td>
             <td>
-              Jalan Sei Alas, Petisah, City of Medan 20119, North Sumatra,
-              Indonesia
+              {{ near.properties.address_line2 }}
             </td>
           </tr>
         </tbody>
@@ -29,7 +28,12 @@
 
 <script>
 export default {
-  name: "Nearby"
+  name: "Nearby",
+  computed: {
+    nearby() {
+      return this.$store.state.nearby;
+    },
+  },
 };
 </script>
 

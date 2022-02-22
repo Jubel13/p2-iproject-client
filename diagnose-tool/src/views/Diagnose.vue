@@ -2,32 +2,34 @@
   <section id="diagnose">
     <h1>Please enter your information below, to determine your disease</h1>
     <div class="card">
-      <form>
+      <form @submit.prevent="getDiagnose">
         <div class="mb-3">
           <label class="form-label">Gender</label>
-          <select class="form-select" aria-label="Default select example">
+          <select
+            v-model="gender"
+            class="form-select"
+            aria-label="Default select example"
+          >
             <option selected disabled>Select gender...</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
         </div>
         <div class="mb-3">
-          <label class="form-label">Birth year</label>
-          <input type="date" class="form-control" />
+          <label class="form-label">Date of Birth</label>
+          <input v-model="date" type="date" class="form-control" />
         </div>
-        <div>
-          <label class="typo__label mb-3">Symptoms</label>
+        <div class="mb-3">
+          <label class="typo__label">Select symptoms</label>
           <multiselect
             v-model="value"
-            placeholder="Symptoms"
-            label="name"
-            track-by="code"
             :options="options"
+            :custom-label="symptomsName"
             :multiple="true"
-            :taggable="true"
-            @tag="addTag"
+            placeholder="Select one"
+            label="name"
+            track-by="ID"
           ></multiselect>
-          <pre class="language-json"><code>{{ value  }}</code></pre>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
@@ -38,32 +40,56 @@
 
 <script>
 import Multiselect from "vue-multiselect";
+import symptoms from "../data/dummySymptoms";
+import api from "../apis/server";
 export default {
   name: "Diagnose",
-  created() {
-    this.$store.dispatch("fetchSymptoms");
-  },
-  computed: {
-    options() {
-      return this.$store.state.symptoms;
-    },
-  },
   components: {
     Multiselect,
   },
   data() {
     return {
-      value: [],
+      value: null,
+      options: symptoms,
+      date: "",
+      gender: "",
     };
   },
+  computed: {
+    year() {
+      return new Date(this.date).getFullYear();
+    },
+    symptomsId() {
+      let id = [];
+      this.value.forEach((el) => {
+        id.push(el.ID);
+      });
+      return id;
+    },
+  },
   methods: {
-    addTag(newTag) {
-      const tag = {
-        name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
-      };
-      this.options.push(tag);
-      this.value.push(tag);
+    symptomsName({ Name }) {
+      return Name;
+    },
+    getDiagnose() {
+      api
+        .post(
+          "/diagnosis",
+          {
+            gender: this.gender,
+            symptoms: this.symptomsId,
+            yearOfBirth: this.year,
+          },
+          {}
+        )
+        .then((resp) => {
+          console.log(resp.data);
+          this.$store.commit("setDiagnoseResult", resp.data);
+          this.$router.push({ name: "Result" });
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+        });
     },
   },
 };

@@ -1,30 +1,21 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import api from "../apis/server";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    symptoms: [],
+    diagnoseResult: [],
+    nearby: [],
   },
   mutations: {
-    setSymptoms(state, payload) {
-      state.symptoms = payload;
+    setDiagnoseResult(state, payload) {
+      state.diagnoseResult = payload;
+    },
+    setNearby(state, payload) {
+      state.nearby = payload;
     },
   },
-  actions: {
-    fetchSymptoms(context) {
-      api
-        .get("/symptoms")
-        .then((resp) => {
-          console.log(resp.data);
-          context.commit("setSymptoms", resp.data);
-        })
-        .catch((err) => {
-          console.log(err.response.data);
-        });
-    },
-  },
+  actions: {},
   modules: {},
 });

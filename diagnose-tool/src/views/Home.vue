@@ -19,9 +19,7 @@
 
 export default {
   name: "Home",
-  created() {
-    this.$store.dispatch("fetchSymptoms");
-  },
+ 
 };
 </script>
 

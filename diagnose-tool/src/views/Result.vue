@@ -13,19 +13,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>415</td>
-            <td>Bloated belly</td>
-            <td>90 percent</td>
-            <td>R14</td>
-            <td>General Practice, Internal Medicine</td>
-          </tr>
-          <tr>
-            <td>415</td>
-            <td>Bloated belly</td>
-            <td>90 percent</td>
-            <td>R14</td>
-            <td>General Practice, Internal Medicine</td>
+          <tr v-for="res in result" v-bind:key="res.Issue.ID">
+            <td>{{ res.Issue.ID }}</td>
+            <td>{{ res.Issue.Name }}</td>
+            <td>{{ res.Issue.Accuracy }} percent</td>
+            <td>{{ res.Issue.Icd }}</td>
+            <td>{{ res.Specialisation.map((el) => el.Name).join(", ") }}</td>
           </tr>
         </tbody>
       </table>
@@ -35,7 +28,24 @@
 
 <script>
 export default {
-  name: "Result"
+  name: "Result",
+  created() {
+    console.log(this.$store.state.diagnoseResult);
+  },
+  computed: {
+    result() {
+      return this.$store.state.diagnoseResult;
+    },
+    specialization() {
+      let specialization = [];
+      this.result.forEach((el) => {
+        el.Specialisation.forEach((spec) => {
+          specialization.push(spec.Name);
+        });
+      });
+      return specialization;
+    },
+  },
 };
 </script>
 
