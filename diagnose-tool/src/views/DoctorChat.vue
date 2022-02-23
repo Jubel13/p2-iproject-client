@@ -1,8 +1,9 @@
 <template>
   <vueChat
     :title="'Diagnostool'"
-    :initial-feed="feed"
+    :initial-feed="chats"
     :new-message="message"
+    :initialAuthorId="id"
     @newOwnMessage="onNewOwnMessage"
   ></vueChat>
 </template>
@@ -13,8 +14,8 @@ export default {
   name: "DoctorChat",
   data: function () {
     return {
-      message: { author: "Doctor", contents: "" },
-      feed: [],
+      id: 1,
+      message: {},
     };
   },
   computed: {
@@ -23,9 +24,14 @@ export default {
     },
   },
   methods: {
-    onNewOwnMessage() {
+    onNewOwnMessage(message) {
       console.log(this.chats);
-      this.$socket.client.emit("sendMessageToServer", this.feed);
+      console.log(message);
+      this.$socket.client.emit("sendMessageToServer", {
+        id: this.id,
+        author: "Doctor",
+        contents: message,
+      });
     },
   },
   components: {

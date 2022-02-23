@@ -7,6 +7,7 @@ import Location from "../views/Location.vue";
 import Nearby from "../views/NearbyPlace.vue";
 import Chat from "../views/Chat.vue";
 import DoctorChat from "../views/DoctorChat.vue";
+import Chats from "../views/Chats.vue";
 
 Vue.use(VueRouter);
 
@@ -39,6 +40,11 @@ const routes = [
         component: Nearby,
       },
     ],
+  },
+  {
+    path: "/chats",
+    name: "Chats",
+    component: Chats,
   },
   {
     path: "/chat",

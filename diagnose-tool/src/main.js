@@ -16,6 +16,10 @@ Vue.config.productionTip = false;
 
 Vue.use(VueSocketIOExt, socket, { store }); //socket io
 
+// beautiful chat
+import Chat from "vue-beautiful-chat";
+Vue.use(Chat);
+
 new Vue({
   router,
   store,

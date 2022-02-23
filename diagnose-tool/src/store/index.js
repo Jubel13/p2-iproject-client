@@ -7,7 +7,15 @@ export default new Vuex.Store({
   state: {
     diagnoseResult: [],
     nearby: [],
-    chats: [],
+    chats: [
+      {
+        id: 1,
+        author: "Doctor",
+        contents: "Selamat datang, silahkan chat keluhan anda",
+        imageUrl: "",
+        date: "09:00:36",
+      },
+    ],
   },
   mutations: {
     setDiagnoseResult(state, payload) {
@@ -16,10 +24,11 @@ export default new Vuex.Store({
     setNearby(state, payload) {
       state.nearby = payload;
     },
-    SOCKET_SENDTOCLIENT(state, payload) {
-      state.chats = payload;
-      console.log(payload);
-      console.log(state.chats);
+    SOCKET_SENDTOCLIENT(state, newMsg) {
+      console.log("dari store, send to client");
+      state.chats.push(newMsg);
+      console.log(newMsg, "Payload 0 dari store");
+      // console.log(state.chats);
     },
   },
   actions: {

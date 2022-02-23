@@ -35,6 +35,9 @@
                   >Hospitals</router-link
                 >
               </li>
+              <li class="nav-item">
+                <router-link class="nav-link" to="/chat">Chat</router-link>
+              </li>
             </ul>
           </div>
         </div>
