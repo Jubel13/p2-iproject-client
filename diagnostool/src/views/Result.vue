@@ -55,7 +55,6 @@ export default {
 #result > h1 {
   text-align: center;
 }
-
 .wrapper {
   width: 85%;
   margin: 0 auto;

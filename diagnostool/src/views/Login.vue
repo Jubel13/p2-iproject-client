@@ -73,5 +73,7 @@ export default {
 .sign-in {
   display: flex;
   flex-grow: 1;
+  width: 500px;
+  align-content: center;
 }
 </style>
