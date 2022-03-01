@@ -7,6 +7,8 @@ Individual Project - Client
 
 > Disclaimer: This app is not intented to be used as a main source to detect diseases, API used in this app have flaws and is not complete. This app use basic symptom checker feature from [api-medic](https://apimedic.com/). In real world cases, you need complex features to diagnose a disease. Also, seek medical assistance if you are not feeling well. The creator of this app is not a doctor, so he don't really know how to diagnose a disease.
 
+Client references: https://dribbble.com/shots/17529559-Medical-Healthcare-service-web-design
+
 This project is called DiagnosTool, it has these features:
 1. Diagnose disease based on symptoms
 2. Search nearby hospitals
